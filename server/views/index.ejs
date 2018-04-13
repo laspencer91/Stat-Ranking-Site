@@ -2,34 +2,73 @@
 <html lang = "en">
 <head>
   <title>index.html</title>
-  <script src="index.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(function() 
+    {
+
+      function getColor(value) {
+        var hue=((value)*120).toString(10);
+        return ["hsl(",Math.round(hue),",100%,50%)"].join("");
+      }
+
+      $(".progress-bar").each(function() {
+        let myVal = $(this).prop("style").getPropertyValue("width");
+        //alert(parseFloat(myVal.substring(0, myVal.length - 1)));
+        myVal = myVal.substring(0, myVal.length - 1);
+        $(this).css("background-color", getColor(myVal/100));
+        //if (myVal > 85.00)
+        //  $(this).css("background-color", "#8fb9fc");
+        //else if (myVal > 40.00)
+        //  $(this).css("background-color", "#fcfa8f");
+        //else
+        //  $(this).css("background-color", "#fc8f8f");
+      });
+    });
+  </script>
   <meta charset = "UTF-8" />
 </head>
 <body>
-  <table class="rank-table">
-    <thead>
-      <tr>
-        <th scope="col">Rank</th>
-        <th scope="col">Player</th>
-        <th scope="col">Team</th>
-        <th scope="col">Kills</th>
-        <th scope="col">Deaths</th>
-        <th scope="col">Assists</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% var rank = 1 %>
-      <% players.forEach(function(player) { %>
-      <tr>
-        <td><%= rank++ %></td>
-        <td><%= player.name %></td>
-        <td><%= player.team %></td>
-        <td><%= player.kills %></td>
-        <td><%= player.deaths %></td>
-        <td><%= player.assists %></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
+  <div class="div-rank-table">
+    <table class="rank-table">
+      <thead>
+        <tr>
+          <th scope="col" class="rank">Rank</th>
+          <th scope="col">Player</th>
+          <th scope="col">Team</th>
+          <th scope="col" class="val">Kills</th>
+          <th scope="col" class="val">Deaths</th>
+          <th scope="col" class="val">Assists</th>
+          <th scope="col" class="val">Played</th>
+          <th scope="col">Kills/Game</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% var rank = 1 %>
+        <% players.forEach(function(player) { %>
+        <tr>
+          <td class="rank rank-val"><%= rank++ %></td>
+          <td><a href='<%=player.profileLink%>'><%= player.name %></td>
+          <td><%= player.team %></td>
+          <td class="val"><%= player.kills %></td>
+          <td class="val"><%= player.deaths %></td>
+          <td class="val"><%= player.assists %></td>
+          <td class="val"><%= player.gamesPlayed %></td>
+          <td class>
+            <div class="progress" style="margin: 0; height: 22px; width: 95%; box-shadow: none; background: none; border-radius: 1px;">
+              <div class="progress-bar prog" role="progressbar" style="opacity: 0.9; width: <%=(100 / stats.maxKillsPerGame) * (player.kills / player.gamesPlayed)%>%" aria-valuemin="0"; aria-valuemax='<%=stats.maxKillsPerGame%>' 
+                        aria-valuenow='<%=player.kills / player.gamesPlayed%>'><%=player.kills / player.gamesPlayed%>
+              </div>
+          </td>
+          </div>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

@@ -1,0 +1,93 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    background-color: #ededed;
+    border: solid 1px #cdd2d2;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+ 
+progress {
+	-webkit-appearance: none;
+    border: none;
+    color: red;
+}
+progress::-webkit-progress-bar {
+	background: none;
+	box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+}
+
+.prog {
+    font-size: 16px;
+    color: #595959;
+    font-weight: bold;
+}
+
+progress::-webkit-progress-value {
+	box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+	background-color: rgb(135, 147, 252);
+	/* Looks great, now animating it */
+	background-size: 25px 14px, 100% 100%, 100% 100%;
+	-webkit-animation: move 5s linear 0 infinite;
+}
+
+table tr:nth-child(odd) td{
+    background-color: #ebebeb;
+}
+
+.div-rank-table {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.rank {
+    text-align: center;
+    width: 10%;
+}
+
+.rank-val {
+    font-weight: bold;
+    color: #595959;
+    font-size: 16px;
+}
+
+.val {
+    text-align: center;
+}
+
+th {
+    height: 41px;
+    padding: 0;
+    border-bottom: 1px solid #cdd2d2;
+    background: #f2f2f2;
+    line-height: 17px;
+    font-size: 20px;
+    text-align: left;
+    color: #444b4b;
+    font-weight: normal;
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #cdd2d2;
+    height: 54px;
+    line-height: 16px;
+    font-size: 14px;
+    display: table-cell;
+    vertical-align: inherit;
+}
+td a {
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    color: #595959;
+    text-transform: uppercase;
+}
