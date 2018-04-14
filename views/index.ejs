@@ -10,31 +10,48 @@
   <script>
     $(function() 
     {
-
+      // Progress Bar Color Calculations
       function getColor(value) {
         var hue=((value)*120).toString(10);
         return ["hsl(",Math.round(hue),",100%,50%)"].join("");
       }
-
       $(".progress-bar").each(function() {
         let myVal = $(this).prop("style").getPropertyValue("width");
-        //alert(parseFloat(myVal.substring(0, myVal.length - 1)));
         myVal = myVal.substring(0, myVal.length - 1);
         $(this).css("background-color", getColor(myVal/100));
-        //if (myVal > 85.00)
-        //  $(this).css("background-color", "#8fb9fc");
-        //else if (myVal > 40.00)
-        //  $(this).css("background-color", "#fcfa8f");
-        //else
-        //  $(this).css("background-color", "#fc8f8f");
+      });
+
+      // Reactive Size Depending On Window
+      $(window).resize(function() {
+        if ($(window).width() < 990) {
+          $(".div-center-content").css("margin-left", "0%");
+          $(".div-center-content").css("margin-right", "0%");
+        }
+        else if ($(window).width() < 1100) {
+          $(".div-center-content").css("margin-left", "5%");
+          $(".div-center-content").css("margin-right", "5%");
+        }
+        else {
+          $(".div-center-content").css("margin-left", "15%");
+          $(".div-center-content").css("margin-right", "15%");
+        }
       });
     });
   </script>
   <meta charset = "UTF-8" />
 </head>
 <body>
-  <div class="div-rank-table">
-    <table class="rank-table">
+  <div class="header" style="min-height: 147px; background-color: black; position: relative;">
+    <div class="header-content" style="position: absolute; margin-top: 50px; margin-left: 2%; height: 50%; width: 90%;">
+        <img src="http://blitzkrieg.theplays.co.uk/wp-content/uploads/2018/03/logo-1.png" style="width: 350px;"/>
+    </div>
+  </div>
+  <div class="div-center-content">
+    <div class="page-desc" style"min-height:100px;">
+        <h1 style="font-weight: bolder; margin-top: 5%; margin-bottom: 3%;">NACL PLAYER RANKINGS</h1>
+    </div>
+  
+    <table class="rank-table" style="min-width: 858px">
       <thead>
         <tr>
           <th scope="col" class="rank">Rank</th>

@@ -3,7 +3,7 @@ var http    = require('http');
 var express = require('express');
 const path  = require('path');
 
-var obj = JSON.parse(fs.readFileSync('../data/PlayerData.json', 'utf8'));
+var obj = JSON.parse(fs.readFileSync('./data/PlayerData.json', 'utf8'));
 
 var cumulativeStats = { maxKillsPerGame: 0 };
 cumulativeStats.maxKillsPerGame = calcMaxKills(obj);
