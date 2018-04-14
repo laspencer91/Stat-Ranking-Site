@@ -3,8 +3,9 @@ var http    = require('http');
 var express = require('express');
 const path  = require('path');
 
-var obj = JSON.parse(fs.readFileSync('./data/PlayerData.json', 'utf8'));
+const PORT = process.env.PORT || 8080;
 
+var obj = JSON.parse(fs.readFileSync('./data/PlayerData.json', 'utf8'));
 var cumulativeStats = { maxKillsPerGame: 0 };
 cumulativeStats.maxKillsPerGame = calcMaxKills(obj);
 
@@ -38,6 +39,6 @@ app.get('/', function(req, res) {
     res.render('./index', { players: obj, stats: cumulativeStats });
 });
 
-app.listen(8080);
+app.listen(PORT);
 
-console.log('8080 is the magic port');
+console.log(PORT + ' is the magic port');
